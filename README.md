@@ -21,7 +21,7 @@
 
 ```lua
 {
-  "dharmablade/hexedit.nvim",
+  "dharmablade/hexview.nvim",
   opts = {
     open_cmd = "current",
     bytes_per_line = 16,
@@ -35,7 +35,7 @@
 
 ```lua
 vim.pack.add({
-  { src = "https://github.com/dharmablade/hexedit.nvim" },
+  { src = "https://github.com/dharmablade/hexview.nvim" },
 })
 
 require("hexedit").setup({
