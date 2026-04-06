@@ -1,0 +1,92 @@
+*hexedit.nvim*
+
+hexedit.nvim                                          Open binary files in hex view
+
+INTRODUCTION                                                    *hexedit-introduction*
+
+    hexedit.nvim provides a dedicated buffer that displays file contents as
+    hex bytes and ASCII text. Editing either representation updates the
+    underlying byte array and the layout is immediately restored.
+
+COMMANDS                                                            *hexedit-commands*
+
+    :HexView [file]
+            Open [file] in a hex view. If [file] is omitted, the current
+            buffer path is used.
+
+    :HexWrite
+            Write the current hex buffer contents back to its source file.
+
+    :HexPageNext
+            Move to the next page.
+
+    :HexPagePrev
+            Move to the previous page.
+
+    :HexPage {page}
+            Jump to page number {page}.
+
+    :HexSearch {query}
+            Search forward across all pages. Prefix with "hex:" to search raw
+            byte sequences.
+
+    :HexSearchPrev {query}
+            Search backward across all pages.
+
+SETUP                                                                  *hexedit-setup*
+
+    lua << EOF
+    require("hexedit").setup({
+      open_cmd = "current",
+      bytes_per_line = 16,
+      page_bytes = 4096,
+      visible_pages = 3,
+      search_chunk_size = 65536,
+      auto_page_switch = true,
+    })
+    EOF
+
+INSTALLATION                                                    *hexedit-installation*
+
+lazy.nvim:
+
+    {
+      "your-name/hexedit.nvim",
+      opts = {
+        open_cmd = "current",
+        bytes_per_line = 16,
+        page_bytes = 4096,
+        visible_pages = 3,
+        search_chunk_size = 65536,
+        auto_page_switch = true,
+      },
+    }
+
+Neovim 0.12 built-in package manager:
+
+    vim.pack.add({
+      { src = "https://github.com/your-name/hexedit.nvim" },
+    })
+
+    require("hexedit").setup({
+      open_cmd = "current",
+      bytes_per_line = 16,
+      page_bytes = 4096,
+      visible_pages = 3,
+      search_chunk_size = 65536,
+      auto_page_switch = true,
+    })
+
+NOTES                                                                  *hexedit-notes*
+
+    - Existing bytes can be modified from either the hex or ASCII region.
+    - Up to three adjacent pages are shown in the buffer at one time, and
+      the loaded window slides as you enter an edge page.
+    - Large files stay disk-backed through a piece-table model.
+    - j/k, arrow movement, <C-f>, <C-b>, <PageDown>, <PageUp>, /, ?, n,
+      and N work across page boundaries. Page motions keep their normal
+      Neovim feel while still updating the loaded page window.
+    - In the hex region, one byte is one hex pair.
+    - Buffer writes use |BufWriteCmd|, so :write persists the edited bytes.
+
+vim:tw=78:ts=8:noet:ft=help:norl:
