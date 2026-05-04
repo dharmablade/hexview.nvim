@@ -887,9 +887,9 @@ local function follow_screen_page_motion(command)
   end
 
   local region = current_region()
-  local keys = vim.api.nvim_replace_termcodes(command, true, false, true)
+  local keys = api.nvim_replace_termcodes(command, true, false, true)
 
-  vim.api.nvim_feedkeys(keys, "n", false)
+  api.nvim_feedkeys(keys, "n", false)
 
   vim.schedule(function()
     local current_state = states[bufnr]

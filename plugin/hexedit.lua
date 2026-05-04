@@ -4,6 +4,10 @@ end
 
 vim.g.loaded_hexedit_plugin = 1
 
+if vim.bo.binary then
+	require("hexedit").open()
+end
+
 vim.api.nvim_create_user_command("HexView", function(command)
   require("hexedit").open(command.args ~= "" and command.args or nil)
 end, {
