@@ -21,7 +21,7 @@
 
 ```lua
 {
-  "dharmablade/hexview.nvim",
+  "dharmablade/hexedit.nvim",
   opts = {
     open_cmd = "current",
     bytes_per_line = 16,
@@ -35,7 +35,7 @@
 
 ```lua
 vim.pack.add({
-  { src = "https://github.com/dharmablade/hexview.nvim" },
+  { src = "https://github.com/dharmablade/hexedit.nvim" },
 })
 
 require("hexedit").setup({
@@ -52,6 +52,12 @@ Open the current file:
 
 ```vim
 :HexView
+```
+
+Or just use "-b" flag:
+
+```bash
+nvim -b /path/to/file
 ```
 
 Open a specific file:
